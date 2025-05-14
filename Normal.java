@@ -1,15 +1,12 @@
 import java.util.Random;
 
-
 public class Normal extends Jogador {
-    
-    
-    public Normal(){
-
-    }
     
     public Normal(String cor){
         super(cor);
+    }
+    public Normal(String cor, int casa){
+        super(cor, casa);
     }
 
     public int rolarDados(){

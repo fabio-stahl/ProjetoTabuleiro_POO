@@ -1,14 +1,12 @@
 import java.util.Random;
 
 public class Azarado extends Jogador {
-    
-    public Azarado(){
-
-    }
-        
 
     public Azarado(String cor){
         super(cor);
+    }
+    public Azarado(String cor, int casa){
+        super(cor, casa);
     }
     public int rolarDados(){
         while(true){

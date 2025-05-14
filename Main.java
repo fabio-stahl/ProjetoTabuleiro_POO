@@ -1,12 +1,23 @@
 import java.util.Scanner;
 
 public class Main {
-    private static Jogador jogador;
+    //private static Jogador jogador;
     private static Tabuleiro tabuleiro; 
-    private static Scanner T = new Scanner(System.in);
+    private static Scanner T = Entrada.getScanner();
     public static void main(String[] args){
-        System.out.println("Digite o número de jogadores:");
-        int numJogadores = T.nextInt();
+
+        int numJogadores = 0;
+
+        while(numJogadores < 2){
+            System.out.print("Digite o número de jogadores: ");
+            numJogadores = T.nextInt();
+            if(numJogadores < 2){
+                System.out.println("Número mínimo de jogadores é 2.");
+            }else if(numJogadores > 6){
+                System.out.println("Número máximo de jogadores é 6.");
+            }
+        }
+
         tabuleiro = new Tabuleiro(numJogadores);
         int[] cor = new int[numJogadores];
         int esc = 0;;
@@ -20,10 +31,11 @@ public class Main {
                 System.out.println("Jogador " + (i + 1) + ", escolha a cor:");
                 System.out.println("1 - Azul");
                 System.out.println("2 - Verde");    
-                System.out.println("3 - Vermelho");
-                System.out.println("4 - Amarelo");
-                System.out.println("5 - Rosa");
-                System.out.println("6 - Laranja");
+                System.out.println("3 - Amarelo");
+                System.out.println("4 - Laranja");
+                System.out.println("5 - Vermelho");
+                System.out.println("6 - Rosa");
+                System.out.print("-> ");
                 esc = T.nextInt();
 
                 boolean corRepetida = false;
@@ -49,16 +61,16 @@ public class Main {
                     escolherJogador("Verde");
                     break;
                 case 3:
-                    escolherJogador("Vermelho");
-                    break;
-                case 4:
                     escolherJogador("Amarelo");
                     break;
+                case 4:
+                    escolherJogador("Laranja");
+                    break;
                 case 5:
-                    escolherJogador("Rosa");
+                    escolherJogador("Vermelho");
                     break;
                 case 6:
-                    escolherJogador("Laranja");
+                    escolherJogador("Rosa");
                     break;                      
             }
         }
@@ -67,20 +79,26 @@ public class Main {
 
         System.out.println("Iniciando o jogo...");
 
-        while(true){
-            System.out.println("Iniciando rodada...");
-            
+        int rodada = 0;
+        int jogadorVitorioso = -1;
+        while(jogadorVitorioso == -1){
+            rodada++;
+            jogadorVitorioso = tabuleiro.fazerRodada(rodada);
         }
+
+        System.out.println("\nRodada " + rodada + " - Fim de jogo!");
+        System.out.println("Jogador " + tabuleiro.getJogadores().get(jogadorVitorioso).getCor() + " vitorioso.");
     }
     
     
     public static void escolherJogador(String cor){
         boolean flag = true;
-            while(flag == true){
+            while(flag == true){ // TEM QUE TER PELO MENOS DOIS TIPOS DIFERENTES = TODOS NÃO PODEM SER IGUAIS
                 System.out.println("Escolha o tipo do jogador:");
                 System.out.println("1 - Normal:");
                 System.out.println("2 - Azarado:");
                 System.out.println("3 - Sortudo:");
+                System.out.print("-> ");
                 int tipo = T.nextInt();
                 switch(tipo){
                     case 1:

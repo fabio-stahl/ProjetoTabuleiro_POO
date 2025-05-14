@@ -1,18 +1,17 @@
-
-
 public abstract class Jogador{
     protected int casaAtual;
     protected String cor;
     protected int dado1, dado2;
     protected boolean podeJogar;
-
-    public Jogador(){
-
-    }
     
     public Jogador(String cor){
         this.cor = cor;
         this.casaAtual = 0;
+        this.podeJogar = true;
+    }
+    public Jogador(String cor, int casa){
+        this.cor = cor;
+        this.casaAtual = casa;
         this.podeJogar = true;
     }
     public abstract int rolarDados();
@@ -24,6 +23,9 @@ public abstract class Jogador{
         return casaAtual;
     }
     public void setCasaAtual(int novaCasa){
+        this.casaAtual = novaCasa;
+    }
+    public void somaCasaAtual(int novaCasa){
         this.casaAtual += novaCasa;
     }
     public int getDado1(){
@@ -38,7 +40,4 @@ public abstract class Jogador{
     public boolean getPodeJogar(){
         return podeJogar;
     }
-
-
-
 }

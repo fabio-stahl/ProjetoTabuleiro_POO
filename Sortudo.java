@@ -2,12 +2,11 @@ import java.util.Random;
 
 public class Sortudo extends Jogador {
 
-    public Sortudo(){
-
-    } 
-
     public Sortudo(String cor){
         super(cor);
+    }
+    public Sortudo(String cor, int casa){
+        super(cor, casa);
     }
     @Override
     public int rolarDados(){
