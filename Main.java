@@ -145,7 +145,6 @@ public class Main {
     }
 
     private static int vitoriaNormal(int rodada) {
-        int casa = 0;
         for (int i=0; i<tabuleiro.getJogadores().size(); i++) {
 
             System.out.println("\nRodada " + rodada);
