@@ -29,12 +29,14 @@ public class Tabuleiro{
         for(int i = 0; i < numJogadores; i++){
             System.out.println("\nRodada " + rodada);
             System.out.println("- - - VEZ DO JOGADOR " + jogadores.get(i).getCor().toUpperCase() + " - - -");
-
+            
             if(jogadores.get(i).getPodeJogar()){
 
                 int resultado = jogadores.get(i).rolarDados();
 
                 System.out.println("Resultado dos dados:" + resultado);
+                System.out.println(jogadores.get(i).getDado1());
+                System.out.println(jogadores.get(i).getDado2());
                 
                 jogadores.get(i).somaCasaAtual(resultado);
                 int casaAtual = jogadores.get(i).getCasaAtual();
@@ -56,9 +58,14 @@ public class Tabuleiro{
                 }else if (casaAtual == 13) {
                     mudarTipoJogador(i);
                 }
+                
             }else{
                 jogadores.get(i).setPodeJogar(true);
                 System.out.println("Jogador " + jogadores.get(i).getCor() + " não pode jogar nesta rodada.");   
+            }
+            if (jogadores.get(i).getDado1() == jogadores.get(i).getDado2()) {
+            	System.out.println("O jogador " + jogadores.get(i).getCor() + " ganhou mais uma rodada!");
+            	i--;
             }
             mostrarFimdeRodada();
         }

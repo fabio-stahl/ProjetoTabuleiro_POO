@@ -10,7 +10,6 @@ public class Sortudo extends Jogador {
     }
     @Override
     public int rolarDados(){
-        int dado1, dado2;
         while(true){
             Random random = new Random();
             dado1 = random.nextInt(6) + 1;

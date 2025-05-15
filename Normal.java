@@ -11,8 +11,8 @@ public class Normal extends Jogador {
 
     public int rolarDados(){
         Random random = new Random();
-        int dado1 = random.nextInt(6) + 1;
-        int dado2 = random.nextInt(6) + 1;
+        dado1 = random.nextInt(6) + 1;
+        dado2 = random.nextInt(6) + 1;
         return dado1 + dado2;
     }
 
