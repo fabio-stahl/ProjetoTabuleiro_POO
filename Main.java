@@ -124,7 +124,7 @@ public class Main {
         	System.out.println("Número de jogadas do jogador " + tabuleiro.getJogadores().get(j).getCor() + " é " + tabuleiro.getJogadores().get(j).getNumJogadas());
         }
     }
-    
+ 
     
     public static void escolherJogador(String cor,int i){
     public static  int[] criandoJogadoresValidos(int numJogadores, int[] cor, int esc){
