@@ -74,6 +74,8 @@ public class Tabuleiro{
         System.out.println("\nRodada " + rodada);
         System.out.println("- - - VEZ DO JOGADOR " + jogadores.get(i).getCor().toUpperCase() + " - - -");
         
+        jogadores.get(i).setCasaAtual(casa);
+
         if(jogadores.get(i).getPodeJogar()){
             int casaAtual = casa;
             if (casaAtual >= 40){
@@ -162,7 +164,4 @@ public class Tabuleiro{
         }
     }
     
-    public int getJogador() {
-    	return jogadores;
-    }
 }
