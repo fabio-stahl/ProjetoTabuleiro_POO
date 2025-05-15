@@ -25,48 +25,44 @@ public class Tabuleiro{
             System.out.println("Jogador: " + jogador.getCor() + " | Casa atual: " + jogador.getCasaAtual());
         }
     }
-    public int fazerRodada(int rodada){
-        for(int i = 0; i < numJogadores; i++){
-            System.out.println("\nRodada " + rodada);
-            System.out.println("- - - VEZ DO JOGADOR " + jogadores.get(i).getCor().toUpperCase() + " - - -");
+    public int fazerRodada(int resultado ,int i){
+        
+        if(jogadores.get(i).getPodeJogar()){
+
+            System.out.println("Resultado dos dados:" + resultado);
             
-            if(jogadores.get(i).getPodeJogar()){
-
-                int resultado = jogadores.get(i).rolarDados();
-
-                System.out.println("Resultado dos dados:" + resultado);
-                
-                jogadores.get(i).somaCasaAtual(resultado);
-                int casaAtual = jogadores.get(i).getCasaAtual();
-                if (casaAtual >= 40){
-                    mostrarFimdeRodada();
-                    return i;
-                }else if (casaAtual == 10 || casaAtual == 25 || casaAtual == 38) {
-                    jogadores.get(i).setPodeJogar(false);
-                }else if (casaAtual == 20 || casaAtual == 35) {
-                    trocarDeCasa(i);
-                }
-                else if (casaAtual == 5 || casaAtual == 15 || casaAtual == 30){
-                    if (jogadores.get(i) instanceof Normal || jogadores.get(i) instanceof Sortudo){
-                        System.out.println("Jogador anda mais 3 casas.");
-                        jogadores.get(i).somaCasaAtual(3);   
-                    }
-                }else if(casaAtual == 17 || casaAtual == 27){
-                    voltarParaInicio(i);
-                }else if (casaAtual == 13) {
-                    mudarTipoJogador(i);
-                }
-                
-            }else{
-                jogadores.get(i).setPodeJogar(true);
-                System.out.println("Jogador " + jogadores.get(i).getCor() + " não pode jogar nesta rodada.");   
+            jogadores.get(i).somaCasaAtual(resultado);
+            int casaAtual = jogadores.get(i).getCasaAtual();
+            if (casaAtual >= 40){
+                mostrarFimdeRodada();
+                return i;
+            }else if (casaAtual == 10 || casaAtual == 25 || casaAtual == 38) {
+                jogadores.get(i).setPodeJogar(false);
+            }else if (casaAtual == 20 || casaAtual == 35) {
+                trocarDeCasa(i);
             }
-            if (jogadores.get(i).getDado1() == jogadores.get(i).getDado2()) {
-            	System.out.println("O jogador " + jogadores.get(i).getCor() + " ganhou mais uma rodada!");
-            	i--;
+            else if (casaAtual == 5 || casaAtual == 15 || casaAtual == 30){
+                if (jogadores.get(i) instanceof Normal || jogadores.get(i) instanceof Sortudo){
+                    System.out.println("Jogador anda mais 3 casas.");
+                    jogadores.get(i).somaCasaAtual(3);   
+                }
+            }else if(casaAtual == 17 || casaAtual == 27){
+                voltarParaInicio(i);
+            }else if (casaAtual == 13) {
+                mudarTipoJogador(i);
             }
-            mostrarFimdeRodada();
+            
+        }else{
+            jogadores.get(i).setPodeJogar(true);
+            System.out.println("Jogador " + jogadores.get(i).getCor() + " não pode jogar nesta rodada.");   
         }
+        if (jogadores.get(i).getDado1() == jogadores.get(i).getDado2()) {
+            System.out.println("O jogador " + jogadores.get(i).getCor() + " ganhou mais uma rodada!");
+            int resultado2 = jogadores.get(i).rolarDados();
+            int flag = fazerRodada(resultado2, i);
+        }
+        mostrarFimdeRodada();
+        
         return -1;
     }
     
