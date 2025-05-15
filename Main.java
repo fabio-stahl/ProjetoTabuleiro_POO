@@ -20,7 +20,7 @@ public class Main {
 
         tabuleiro = new Tabuleiro(numJogadores);
         int[] cor = new int[numJogadores];
-        int esc = 0;;
+        int esc = 0;
         
 
         for(int i = 0; i < numJogadores; i++){
@@ -131,7 +131,7 @@ public class Main {
                 }   
             }
     }
-    public int vintoriaDebug(int rodada) {
+    public static int vitoriaDebug(int rodada) {
     	for (int i=0; i<tabuleiro.getJogadores().size(); i++) {
     		System.out.println("Você deseja que o Jogador " + tabuleiro.getJogadores.get(i).getCor() + "ande até que casa? ");
     		int casa = T.nextInt();
