@@ -55,22 +55,22 @@ public class Main {
             }
             switch(esc){
                 case 1:
-                    escolherJogador("Azul");
+                    escolherJogador("Azul", i);
                     break;
                 case 2:
-                    escolherJogador("Verde");
+                    escolherJogador("Verde", i);
                     break;
                 case 3:
-                    escolherJogador("Amarelo");
+                    escolherJogador("Amarelo", i);
                     break;
                 case 4:
-                    escolherJogador("Laranja");
+                    escolherJogador("Laranja", i);
                     break;
                 case 5:
-                    escolherJogador("Vermelho");
+                    escolherJogador("Vermelho", i);
                     break;
                 case 6:
-                    escolherJogador("Rosa");
+                    escolherJogador("Rosa", i);
                     break;                      
             }
         }
@@ -108,7 +108,7 @@ public class Main {
     }
     
     
-    public static void escolherJogador(String cor){
+    public static void escolherJogador(String cor,int i){
         boolean flag = true;
             while(flag == true){ // TEM QUE TER PELO MENOS DOIS TIPOS DIFERENTES = TODOS NÃO PODEM SER IGUAIS
                 System.out.println("Escolha o tipo do jogador:");
@@ -132,8 +132,11 @@ public class Main {
                         break;
                     default:
                         System.out.println("Tipo invalido tente novamente");
-                }   
+                }
+
             }
+        System.out.println("Jogador " + (i + 1) + " de cor " + cor + " criado com sucesso!");
+            
     }
     public static int vitoriaDebug(int rodada) {
     	for (int i=0; i<tabuleiro.getJogadores().size(); i++) {
@@ -156,6 +159,16 @@ public class Main {
 
             System.out.println("Vez do jogador "+ tabuleiro.getJogadores().get(i).getCor());
             System.out.println("Role os dados!");
+
+            System.out.println("Pressione 1 - para rolar os dados 2 - Passar Rodada.");
+            int esc = T.nextInt();
+            if (esc == 2) {
+            	System.out.println("Rodada passada.");
+            	continue;
+            }else if(esc == 1){
+                System.out.println("Rolando os dados...");
+
+            }
 
     		int resultado = tabuleiro.getJogadores().get(i).rolarDados();
     		int flagTabuleiro = tabuleiro.fazerRodada(resultado, i);
