@@ -88,7 +88,7 @@ public class Main {
         while(jogadorVitorioso == -1){
             rodada++;
             if (modo == 1) {
-            	jogadorVitorioso = tabuleiro.fazerRodada(rodada);
+            	jogadorVitorioso = vitoriaNormal(rodada); 
             }
             else if (modo ==2) {
             	jogadorVitorioso = vitoriaDebug(rodada);
@@ -146,5 +146,24 @@ public class Main {
     	}
     	return -1;
     
+    }
+
+    private static int vitoriaNormal(int rodada) {
+        for (int i=0; i<tabuleiro.getJogadores().size(); i++) {
+
+            System.out.println("\nRodada " + rodada);
+            System.out.println("- - - VEZ DO JOGADOR " + tabuleiro.getJogadores().get(i).getCor().toUpperCase() + " - - -");
+
+            System.out.println("Vez do jogador "+ tabuleiro.getJogadores().get(i).getCor());
+            System.out.println("Role os dados!");
+
+    		int resultado = tabuleiro.getJogadores().get(i).rolarDados();
+    		int flagTabuleiro = tabuleiro.fazerRodada(resultado, i);
+    		
+            if (flagTabuleiro != -1) {
+    			return flagTabuleiro;
+    		} 
+    	}
+    	return -1;
     }
 }
