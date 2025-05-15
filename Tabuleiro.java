@@ -25,16 +25,12 @@ public class Tabuleiro{
             System.out.println("Jogador: " + jogador.getCor() + " | Casa atual: " + jogador.getCasaAtual());
         }
     }
-    public int fazerRodada(int rodada){
-        for(int i = 0; i < numJogadores; i++){
-            System.out.println("\nRodada " + rodada);
-            System.out.println("- - - VEZ DO JOGADOR " + jogadores.get(i).getCor().toUpperCase() + " - - -");
-            
-            if(jogadores.get(i).getPodeJogar()){
-            	int incremento = jogadores.get(i).getNumJogadas() + 1;
-                jogadores.get(i).setNumJogadas(incremento);
-                
-                int resultado = jogadores.get(i).rolarDados();
+    
+    public int fazerRodada(int resultado ,int i){
+        
+        if(jogadores.get(i).getPodeJogar()){
+            int incremento = jogadores.get(i).getNumJogadas() + 1;
+            jogadores.get(i).setNumJogadas(incremento);
 
             System.out.println("Resultado dos dados:" + resultado);
             
