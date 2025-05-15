@@ -31,7 +31,9 @@ public class Tabuleiro{
             System.out.println("- - - VEZ DO JOGADOR " + jogadores.get(i).getCor().toUpperCase() + " - - -");
             
             if(jogadores.get(i).getPodeJogar()){
-
+            	int incremento = jogadores.get(i).getNumJogadas() + 1;
+                jogadores.get(i).setNumJogadas(incremento);
+                
                 int resultado = jogadores.get(i).rolarDados();
 
                 System.out.println("Resultado dos dados:" + resultado);
@@ -78,6 +80,8 @@ public class Tabuleiro{
 
         if(jogadores.get(i).getPodeJogar()){
             int casaAtual = casa;
+            int incremento = jogadores.get(i).getNumJogadas() + 1;
+            jogadores.get(i).setNumJogadas(incremento); 
             if (casaAtual >= 40){
                 mostrarFimdeRodada();
                 return i;

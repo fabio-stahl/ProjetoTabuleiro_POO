@@ -41,4 +41,10 @@ public abstract class Jogador{
     public boolean getPodeJogar(){
         return podeJogar;
     }
+    public int getNumJogadas(){
+    	return numJogadas;
+    }
+    public void setNumJogadas(int num) {
+    	this.numJogadas = num;
+    }
 }
