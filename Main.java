@@ -21,61 +21,7 @@ public class Main {
                     System.out.println("Número máximo de jogadores é 6.");
                 }
             }
-        }
-        tabuleiro = new Tabuleiro(numJogadores);
-        int[] cor = new int[numJogadores];
-        int esc = 0;
-        
 
-        for(int i = 0; i < numJogadores; i++){
-            
-            boolean corValida = false;
-
-            while(!corValida){
-                System.out.println("Jogador " + (i + 1) + ", escolha a cor:");
-                System.out.println("1 - Azul");
-                System.out.println("2 - Verde");    
-                System.out.println("3 - Amarelo");
-                System.out.println("4 - Laranja");
-                System.out.println("5 - Vermelho");
-                System.out.println("6 - Rosa");
-                System.out.print("-> ");
-                esc = T.nextInt();
-
-                boolean corRepetida = false;
-                for(int j = 0; j < i; j++){
-                    if(cor[j] == esc){
-                        corRepetida = true;
-                        break;
-                    }
-                }
-
-                if(corRepetida){
-                    System.out.println("Essa cor já foi escolhida. Tente outra.");
-                } else {
-                    cor[i] = esc;
-                    corValida = true;
-                }
-            }
-            switch(esc){
-                case 1:
-                    escolherJogador("Azul", i);
-                    break;
-                case 2:
-                    escolherJogador("Verde", i);
-                    break;
-                case 3:
-                    escolherJogador("Amarelo", i);
-                    break;
-                case 4:
-                    escolherJogador("Laranja", i);
-                    break;
-                case 5:
-                    escolherJogador("Vermelho", i);
-                    break;
-                case 6:
-                    escolherJogador("Rosa", i);
-                    break;                      
             tabuleiro = new Tabuleiro(numJogadores);
             int[] cor = new int[numJogadores];
             int esc = 0;
@@ -126,8 +72,7 @@ public class Main {
     }
     
     
-    public static void escolherJogador(String cor,int i){
-    public static  int[] criandoJogadoresValidos(int numJogadores, int[] cor, int esc){
+   public static  int[] criandoJogadoresValidos(int numJogadores, int[] cor, int esc){
         int [] jogadorTipo = new int [numJogadores];
         for(int i = 0; i < numJogadores; i++){
             
@@ -185,34 +130,7 @@ public class Main {
     }
     
     public static int escolherJogador(String cor){
-        boolean flag = true;
-            while(flag == true){ // TEM QUE TER PELO MENOS DOIS TIPOS DIFERENTES = TODOS NÃO PODEM SER IGUAIS
-                System.out.println("Escolha o tipo do jogador:");
-                System.out.println("1 - Normal:");
-                System.out.println("2 - Azarado:");
-                System.out.println("3 - Sortudo:");
-                System.out.print("-> ");
-                int tipo = T.nextInt();
-                switch(tipo){
-                    case 1:
-                        tabuleiro.adicionarJogadores(new Normal(cor));
-                        flag = false;
-                        break;
-                    case 2:
-                        tabuleiro.adicionarJogadores(new Azarado(cor));
-                        flag = false;
-                        break;
-                    case 3:
-                        tabuleiro.adicionarJogadores(new Sortudo(cor));
-                        flag = false;
-                        break;
-                    default:
-                        System.out.println("Tipo invalido tente novamente");
-                }
-
-            }
-        System.out.println("Jogador " + (i + 1) + " de cor " + cor + " criado com sucesso!");
-            
+        boolean flag = true;            
         int tipo = 0;
         while(flag == true){ // TEM QUE TER PELO MENOS DOIS TIPOS DIFERENTES = TODOS NÃO PODEM SER IGUAIS
             System.out.println("Escolha o tipo do jogador:");
@@ -243,6 +161,7 @@ public class Main {
         }
         return tipo;
     }
+
     public static int vitoriaDebug(int rodada) {
     	for (int i=0; i<tabuleiro.getJogadores().size(); i++) {
             System.out.println("Você deseja que o Jogador " + tabuleiro.getJogadores().get(i).getCor() + " ande até que casa? ");
@@ -274,14 +193,14 @@ public class Main {
                 System.out.println("Rolando os dados...");
 
             }
-
     		int resultado = tabuleiro.getJogadores().get(i).rolarDados();
-    		int flagTabuleiro = tabuleiro.fazerRodada(resultado, i);
-    		
+    		int flagTabuleiro = tabuleiro.fazerRodada(resultado, i);    		
             if (flagTabuleiro != -1) {
     			return flagTabuleiro;
     		} 
     	}
     	return -1;
     }
+
+    
 }
