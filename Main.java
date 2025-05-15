@@ -21,7 +21,7 @@ public class Main {
                     System.out.println("Número máximo de jogadores é 6.");
                 }
             }
-
+        }
         tabuleiro = new Tabuleiro(numJogadores);
         int[] cor = new int[numJogadores];
         int esc = 0;
