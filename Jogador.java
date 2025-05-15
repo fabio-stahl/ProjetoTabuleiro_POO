@@ -6,14 +6,16 @@ public abstract class Jogador{
     protected int numJogadas;
     
     public Jogador(String cor){
+        super(); // Explicitly call the superclass constructor
         this.cor = cor;
         this.casaAtual = 0;
         this.podeJogar = true;
-    }
     public Jogador(String cor, int casa){
+        super(); // Explicitly call the superclass constructor
         this.cor = cor;
         this.casaAtual = casa;
         this.podeJogar = true;
+    }
     }
     public abstract int rolarDados();
 
