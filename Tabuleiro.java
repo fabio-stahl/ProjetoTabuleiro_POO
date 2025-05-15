@@ -35,8 +35,6 @@ public class Tabuleiro{
                 int resultado = jogadores.get(i).rolarDados();
 
                 System.out.println("Resultado dos dados:" + resultado);
-                System.out.println(jogadores.get(i).getDado1());
-                System.out.println(jogadores.get(i).getDado2());
                 
                 jogadores.get(i).somaCasaAtual(resultado);
                 int casaAtual = jogadores.get(i).getCasaAtual();
@@ -71,6 +69,44 @@ public class Tabuleiro{
         }
         return -1;
     }
+    
+    public int modoDebug(int rodada, int casa, int i) {
+        System.out.println("\nRodada " + rodada);
+        System.out.println("- - - VEZ DO JOGADOR " + jogadores.get(i).getCor().toUpperCase() + " - - -");
+        
+        if(jogadores.get(i).getPodeJogar()){
+            int casaAtual = casa;
+            if (casaAtual >= 40){
+                mostrarFimdeRodada();
+                return i;
+            }else if (casaAtual == 10 || casaAtual == 25 || casaAtual == 38) {
+                jogadores.get(i).setPodeJogar(false);
+            }else if (casaAtual == 20 || casaAtual == 35) {
+                trocarDeCasa(i);
+            }
+            else if (casaAtual == 5 || casaAtual == 15 || casaAtual == 30){
+                if (jogadores.get(i) instanceof Normal || jogadores.get(i) instanceof Sortudo){
+                    System.out.println("Jogador anda mais 3 casas.");
+                    jogadores.get(i).somaCasaAtual(3);   
+                }
+            }else if(casaAtual == 17 || casaAtual == 27){
+                voltarParaInicio(i);
+            }else if (casaAtual == 13) {
+                mudarTipoJogador(i);
+            }
+            
+        }else{
+            jogadores.get(i).setPodeJogar(true);
+            System.out.println("Jogador " + jogadores.get(i).getCor() + " não pode jogar nesta rodada.");   
+        }
+        if (jogadores.get(i).getDado1() == jogadores.get(i).getDado2()) {
+        	System.out.println("O jogador " + jogadores.get(i).getCor() + " ganhou mais uma rodada!");
+        	i--;
+        }
+        mostrarFimdeRodada();
+        return -1;
+    }
+    
     private void trocarDeCasa(int i){
         int casaAtual = jogadores.get(i).getCasaAtual();
         int menorCasa = 40;
@@ -124,5 +160,9 @@ public class Tabuleiro{
                 System.out.println("Jogador " + jogadores.get(i).getCor() + " agora é Azarado");
                 break;
         }
+    }
+    
+    public int getJogador() {
+    	return jogadores;
     }
 }

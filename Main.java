@@ -78,12 +78,25 @@ public class Main {
         System.out.println("Jogadores criados com sucesso!");
 
         System.out.println("Iniciando o jogo...");
-
+        
+        System.out.println("Você deseja jogar no modo normal ou Debug? \n1 - Normal\n2 - Debug");
+        int modo = T.nextInt();
+        T.nextLine();
+        
         int rodada = 0;
         int jogadorVitorioso = -1;
         while(jogadorVitorioso == -1){
             rodada++;
-            jogadorVitorioso = tabuleiro.fazerRodada(rodada);
+            if (modo == 1) {
+            	jogadorVitorioso = tabuleiro.fazerRodada(rodada);
+            }
+            else if (modo ==2) {
+            	jogadorVitorioso = vitoriaDebug(rodada);
+            }
+            else {
+            	System.out.println("Escolha inválida!")
+            }
+            
         }
 
         System.out.println("\nRodada " + rodada + " - Fim de jogo!");
@@ -117,5 +130,17 @@ public class Main {
                         System.out.println("Tipo invalido tente novamente");
                 }   
             }
+    }
+    public int vintoriaDebug(int rodada) {
+    	for (int i=0; i<tabuleiro.getJogadores().size(); i++) {
+    		System.out.println("Você deseja que o Jogador " + tabuleiro.getJogadores.get(i).getCor() + "ande até que casa? ");
+    		int casa = T.nextInt();
+    		int flagTabuleiro = tabuleiro.modoDebug(rodada, casa, i);
+    		if (flagTabuleiro != -1) {
+    			return flagTabuleiro;
+    		} 
+    	}
+    	return;
+    
     }
 }
