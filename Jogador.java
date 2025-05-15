@@ -3,6 +3,7 @@ public abstract class Jogador{
     protected String cor;
     protected int dado1, dado2;
     protected boolean podeJogar;
+    protected int numJogadas;
     
     public Jogador(String cor){
         this.cor = cor;

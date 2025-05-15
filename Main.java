@@ -94,7 +94,7 @@ public class Main {
             	jogadorVitorioso = vitoriaDebug(rodada);
             }
             else {
-            	System.out.println("Escolha inválida!")
+            	System.out.println("Escolha inválida!");
             }
             
         }
@@ -131,16 +131,16 @@ public class Main {
                 }   
             }
     }
-    public int vintoriaDebug(int rodada) {
+    public static int vitoriaDebug(int rodada) {
     	for (int i=0; i<tabuleiro.getJogadores().size(); i++) {
-    		System.out.println("Você deseja que o Jogador " + tabuleiro.getJogadores.get(i).getCor() + "ande até que casa? ");
+            System.out.println("Você deseja que o Jogador " + tabuleiro.getJogadores().get(i).getCor() + " ande até que casa? ");
     		int casa = T.nextInt();
     		int flagTabuleiro = tabuleiro.modoDebug(rodada, casa, i);
     		if (flagTabuleiro != -1) {
     			return flagTabuleiro;
     		} 
     	}
-    	return;
+    	return -1;
     
     }
 }
