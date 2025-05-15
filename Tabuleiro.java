@@ -139,9 +139,10 @@ public class Tabuleiro{
         int esc = T.nextInt();
         esc--;
 
-        while(esc <= 0 || esc > numJogadores || esc == i){
+        while(esc < 0 || esc > numJogadores || esc == i){
             System.out.print("Escolha uma cor válida: ");
             esc = T.nextInt();
+            esc--;
         }
 
         jogadores.get(esc).setCasaAtual(0);
