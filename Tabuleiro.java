@@ -27,48 +27,48 @@ public class Tabuleiro{
     }
     public int fazerRodada(int resultado, int i) {
 
-    if (jogadores.get(i).getPodeJogar()) {
-        int incremento = jogadores.get(i).getNumJogadas() + 1;
-        jogadores.get(i).setNumJogadas(incremento);
+        if (jogadores.get(i).getPodeJogar()) {
+            int incremento = jogadores.get(i).getNumJogadas() + 1;
+            jogadores.get(i).setNumJogadas(incremento);
 
-        System.out.println("Resultado dos dados: " + resultado);
+            System.out.println("Resultado dos dados: " + resultado);
 
-        jogadores.get(i).somaCasaAtual(resultado);
-        int casaAtual = jogadores.get(i).getCasaAtual();
+            jogadores.get(i).somaCasaAtual(resultado);
+            int casaAtual = jogadores.get(i).getCasaAtual();
 
-        if (casaAtual >= 40) {
-            mostrarFimdeRodada();
-            return i;
-        } else if (casaAtual == 10 || casaAtual == 25 || casaAtual == 38) {
-            jogadores.get(i).setPodeJogar(false);
-        } else if (casaAtual == 20 || casaAtual == 35) {
-            trocarDeCasa(i);
-        } else if (casaAtual == 5 || casaAtual == 15 || casaAtual == 30) {
-            if (jogadores.get(i) instanceof Normal || jogadores.get(i) instanceof Sortudo) {
-                System.out.println("Jogador anda mais 3 casas.");
-                jogadores.get(i).somaCasaAtual(3);
+            if (casaAtual >= 40) {
+                mostrarFimdeRodada();
+                return i;
+            } else if (casaAtual == 10 || casaAtual == 25 || casaAtual == 38) {
+                jogadores.get(i).setPodeJogar(false);
+            } else if (casaAtual == 20 || casaAtual == 35) {
+                trocarDeCasa(i);
+            } else if (casaAtual == 5 || casaAtual == 15 || casaAtual == 30) {
+                if (jogadores.get(i) instanceof Normal || jogadores.get(i) instanceof Sortudo) {
+                    System.out.println("Jogador anda mais 3 casas.");
+                    jogadores.get(i).somaCasaAtual(3);
+                }
+            } else if (casaAtual == 17 || casaAtual == 27) {
+                voltarParaInicio(i);
+            } else if (casaAtual == 13) {
+                mudarTipoJogador(i);
             }
-        } else if (casaAtual == 17 || casaAtual == 27) {
-            voltarParaInicio(i);
-        } else if (casaAtual == 13) {
-            mudarTipoJogador(i);
+
+        } else {
+            jogadores.get(i).setPodeJogar(true);
+            System.out.println("Jogador " + jogadores.get(i).getCor() + " não pode jogar nesta rodada.");
         }
 
-    } else {
-        jogadores.get(i).setPodeJogar(true);
-        System.out.println("Jogador " + jogadores.get(i).getCor() + " não pode jogar nesta rodada.");
+        if (jogadores.get(i).getDado1() == jogadores.get(i).getDado2()) {
+            System.out.println("O jogador " + jogadores.get(i).getCor() + " ganhou mais uma rodada!");
+            int resultado2 = jogadores.get(i).rolarDados();
+            return fazerRodada(resultado2, i); // chamada recursiva com retorno
+        }
+
+        mostrarFimdeRodada();
+
+        return -1;
     }
-
-    if (jogadores.get(i).getDado1() == jogadores.get(i).getDado2()) {
-        System.out.println("O jogador " + jogadores.get(i).getCor() + " ganhou mais uma rodada!");
-        int resultado2 = jogadores.get(i).rolarDados();
-        return fazerRodada(resultado2, i); // chamada recursiva com retorno
-    }
-
-    mostrarFimdeRodada();
-
-    return -1;
-}
 
     
     public int modoDebug(int rodada, int casa, int i) {
@@ -127,6 +127,7 @@ public class Tabuleiro{
         jogadores.get(i).setCasaAtual(menorCasa);
         jogadores.get(indiceMenorCasa).setCasaAtual(casaAtual);
     }
+
     private void voltarParaInicio(int i){
 
         for(int j = 0; j< numJogadores; j++){
@@ -148,6 +149,7 @@ public class Tabuleiro{
         jogadores.get(esc).setCasaAtual(0);
         System.out.println("Jogador " + jogadores.get(esc).getCor() + " voltou para o início.");
     }
+    
     private void mudarTipoJogador(int i){
         Random random = new Random();
         int tipo = random.nextInt(3) + 1;
