@@ -104,10 +104,6 @@ public class Tabuleiro{
             jogadores.get(i).setPodeJogar(true);
             System.out.println("Jogador " + jogadores.get(i).getCor() + " não pode jogar nesta rodada.");   
         }
-        if (jogadores.get(i).getDado1() == jogadores.get(i).getDado2()) {
-        	System.out.println("O jogador " + jogadores.get(i).getCor() + " ganhou mais uma rodada!");
-        	i--;
-        }
         mostrarFimdeRodada();
         return -1;
     }
@@ -126,6 +122,8 @@ public class Tabuleiro{
         }
         jogadores.get(i).setCasaAtual(menorCasa);
         jogadores.get(indiceMenorCasa).setCasaAtual(casaAtual);
+        System.out.println("Jogador" + jogadores.get(i).getCor() + " trocou de casa com o jogador " + jogadores.get(indiceMenorCasa).getCor());
+        System.out.println("Jogador " + jogadores.get(i).getCor() + " está na casa " + jogadores.get(i).getCasaAtual());
     }
 
     private void voltarParaInicio(int i){
