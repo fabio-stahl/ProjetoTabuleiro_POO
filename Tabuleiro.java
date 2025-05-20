@@ -147,7 +147,7 @@ public class Tabuleiro{
     private void mudarTipoJogador(int i){
         Random random = new Random();
         int tipo = random.nextInt(3) + 1;
-        System.out.println("Carta sorteada:" + tipo);
+        System.out.println("\n\nCarta sorteada:" + tipo);
         switch (tipo) {
             case 1:
                 jogadores.set(i, new Normal(jogadores.get(i).getCor(), jogadores.get(i).getCasaAtual()));
