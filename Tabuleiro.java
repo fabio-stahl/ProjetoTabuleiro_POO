@@ -72,7 +72,7 @@ public class Tabuleiro{
 
     
     public int modoDebug(int rodada, int casa, int i) {
-        System.out.println("\nRodada " + rodada);
+        System.out.println("\n\nRodada " + rodada);
         System.out.println("- - - VEZ DO JOGADOR " + jogadores.get(i).getCor().toUpperCase() + " - - -");
         
         jogadores.get(i).setCasaAtual(casa);
@@ -127,6 +127,8 @@ public class Tabuleiro{
     }
 
     private void voltarParaInicio(int i){
+        System.out.println("\n"+jogadores.get(i).getCor() + "pode escolher:");
+        System.out.println("Escolha o jogador que você deseja que volte para o início:");
 
         for(int j = 0; j< numJogadores; j++){
             if(j != i){
@@ -134,7 +136,7 @@ public class Tabuleiro{
             }
         }
 
-        System.out.print("Escolha o jogador que você deseja que volte para o início: ");
+        
         int esc = T.nextInt();
         esc--;
 
@@ -145,7 +147,7 @@ public class Tabuleiro{
         }
 
         jogadores.get(esc).setCasaAtual(0);
-        System.out.println("Jogador " + jogadores.get(esc).getCor() + " voltou para o início.");
+        System.out.println("Jogador " + jogadores.get(esc).getCor() + " voltou para o início. \n");
     }
     
     private void mudarTipoJogador(int i){
