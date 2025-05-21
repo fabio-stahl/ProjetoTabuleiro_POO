@@ -104,20 +104,26 @@ public class Tabuleiro{
     
     private void trocarDeCasa(int i){
         int casaAtual = jogadores.get(i).getCasaAtual();
-        int menorCasa = 40;
-        int indiceMenorCasa = i;
+        int menorCasa = casaAtual; // comparar com a casa atual do jogador
+        int indiceMenorCasa = -1; // -1 indica que não há ninguém atrás
+    
         for(int j = 0; j < numJogadores; j++){
             if(j != i){
-                if(menorCasa > jogadores.get(j).getCasaAtual()){
-                    menorCasa = jogadores.get(j).getCasaAtual();
+                int casaOutroJogador = jogadores.get(j).getCasaAtual();
+                if(casaOutroJogador < menorCasa){
+                    menorCasa = casaOutroJogador;
                     indiceMenorCasa = j;
                 }
             }
         }
-        jogadores.get(i).setCasaAtual(menorCasa);
-        jogadores.get(indiceMenorCasa).setCasaAtual(casaAtual);
-        System.out.println("Jogador" + jogadores.get(i).getCor() + " trocou de casa com o jogador " + jogadores.get(indiceMenorCasa).getCor());
-        System.out.println("Jogador " + jogadores.get(i).getCor() + " está na casa " + jogadores.get(i).getCasaAtual());
+        if (indiceMenorCasa != -1) {
+            jogadores.get(i).setCasaAtual(menorCasa);
+            jogadores.get(indiceMenorCasa).setCasaAtual(casaAtual);
+            System.out.println("Jogador " + jogadores.get(i).getCor() + " trocou de casa com o jogador " + jogadores.get(indiceMenorCasa).getCor());
+            System.out.println("Jogador " + jogadores.get(i).getCor() + " está na casa " + jogadores.get(i).getCasaAtual());
+        } else {
+            System.out.println("Jogador " + jogadores.get(i).getCor() + " está em último e não trocou de casa.");
+        }
     }
 
     private void voltarParaInicio(int i){
@@ -154,12 +160,12 @@ public class Tabuleiro{
                 System.out.println("Jogador " + jogadores.get(i).getCor() + " agora é Normal.");
                 break;
             case 2:
-                jogadores.set(i, new Sortudo(jogadores.get(i).getCor(), jogadores.get(i).getCasaAtual()));
-                System.out.println("Jogador " + jogadores.get(i).getCor() + " agora é sortudo");
-                break;
-            case 3:
                 jogadores.set(i, new Azarado(jogadores.get(i).getCor(), jogadores.get(i).getCasaAtual()));
                 System.out.println("Jogador " + jogadores.get(i).getCor() + " agora é Azarado");
+                break;
+            case 3:
+                jogadores.set(i, new Sortudo(jogadores.get(i).getCor(), jogadores.get(i).getCasaAtual()));
+                System.out.println("Jogador " + jogadores.get(i).getCor() + " agora é sortudo");
                 break;
         }
     }

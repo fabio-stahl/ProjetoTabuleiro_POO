@@ -165,6 +165,8 @@ public class Main {
     public static int vitoriaDebug(int rodada) {
     	for (int i=0; i<tabuleiro.getJogadores().size(); i++) {
             if(tabuleiro.getJogadores().get(i).getPodeJogar()){
+                System.out.println("\n\nRodada " + rodada);
+                System.out.println("- - - VEZ DO JOGADOR " + tabuleiro.getJogadores().get(i).getCor().toUpperCase() + " - - -");
                 System.out.println("Você deseja que o Jogador " + tabuleiro.getJogadores().get(i).getCor() + " ande até que casa? ");
                 int casa = T.nextInt();
                 int flagTabuleiro = tabuleiro.modoDebug(rodada, casa, i);
@@ -173,7 +175,8 @@ public class Main {
                 }
             }else{
                 tabuleiro.getJogadores().get(i).setPodeJogar(true);
-                System.out.println("\n\nJogador " + tabuleiro.getJogadores().get(i).getCor() + " não pode jogar nesta rodada.");   
+                System.out.println("\n\nRodada " + rodada);
+                System.out.println("\nJogador " + tabuleiro.getJogadores().get(i).getCor() + " não pode jogar nesta rodada.");   
             } 
     	}
     	return -1;
@@ -206,7 +209,8 @@ public class Main {
                 }
             } else {
                 tabuleiro.getJogadores().get(i).setPodeJogar(true);
-                System.out.println("\n\nJogador " + tabuleiro.getJogadores().get(i).getCor() + " não pode jogar nesta rodada.");
+                System.out.println("\n\nRodada " + rodada);
+                System.out.println("\nJogador " + tabuleiro.getJogadores().get(i).getCor() + " não pode jogar nesta rodada.");
             } 
     	}
     	return -1;
