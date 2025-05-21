@@ -6,6 +6,16 @@ public class Main {
     //private static Jogador jogador;
     private static Tabuleiro tabuleiro; 
     private static Scanner T = Entrada.getScanner();
+
+    //cores
+    public static final String RESET = "\u001B[0m";
+    public static final String AZUL = "\u001B[34m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String AMARELO = "\u001B[38;5;226m";
+    public static final String LARANJA = "\u001B[38;5;214m";
+    public static final String VERMELHO = "\u001B[38;5;196m";
+    public static final String ROSA = "\u001B[38;2;255;105;180m";
+
     public static void main(String[] args){
         int numJogadores = 0;
         Set<Integer> tipos  = new HashSet<>();
@@ -39,11 +49,10 @@ public class Main {
             }
         }
 
-        System.out.println("Jogadores criados com sucesso!");
-
-        System.out.println("Iniciando o jogo...");
-        
-        System.out.println("Você deseja jogar no modo normal ou Debug? \n1 - Normal\n2 - Debug");
+        System.out.println("\nJogadores criados com sucesso!");
+        System.out.println("\nIniciando o jogo...");
+        System.out.println("\nVocê deseja jogar no modo normal ou Debug? \n1 - Normal\n2 - Debug");
+        System.out.print("-> ");
         int modo = T.nextInt();
         T.nextLine();
         
@@ -64,10 +73,10 @@ public class Main {
         }
 
         System.out.println("\nRodada " + rodada + " - Fim de jogo!");
-        System.out.println("Jogador " + tabuleiro.getJogadores().get(jogadorVitorioso).getCor() + " vitorioso.");
+        System.out.println(tabuleiro.getJogadores().get(jogadorVitorioso).getCor() + "Jogador " + (jogadorVitorioso + 1) + RESET + " vitorioso.");
         System.out.println("Número de jogadas dos jogadores:");
         for (int j=0; j<tabuleiro.getJogadores().size(); j++) {
-        	System.out.println("Número de jogadas do jogador " + tabuleiro.getJogadores().get(j).getCor() + " é " + tabuleiro.getJogadores().get(j).getNumJogadas());
+        	System.out.println("Número de jogadas do " + tabuleiro.getJogadores().get(j).getCor() + "Jogador " + (j + 1) + RESET + " é " + tabuleiro.getJogadores().get(j).getNumJogadas());
         }
     }
  
@@ -80,12 +89,12 @@ public class Main {
 
             while(!corValida){
                 System.out.println("Jogador " + (i + 1) + ", escolha a cor:");
-                System.out.println("1 - Azul");
-                System.out.println("2 - Verde");    
-                System.out.println("3 - Amarelo");
-                System.out.println("4 - Laranja");
-                System.out.println("5 - Vermelho");
-                System.out.println("6 - Rosa");
+                System.out.println("1 - " + AZUL + "Azul" + RESET);
+                System.out.println("2 - " + VERDE + "Verde" + RESET);    
+                System.out.println("3 - " + AMARELO + "Amarelo" + RESET);
+                System.out.println("4 - " + LARANJA + "Laranja" + RESET);
+                System.out.println("5 - " + VERMELHO + "Vermelho" + RESET);
+                System.out.println("6 - " + ROSA + "Rosa" + RESET);
                 System.out.print("-> ");
                 esc = T.nextInt();
 
@@ -106,22 +115,22 @@ public class Main {
             }
             switch(esc){
                 case 1:
-                    jogadorTipo[i] = escolherJogador("Azul");
+                    jogadorTipo[i] = escolherJogador(AZUL);
                     break;
                 case 2:
-                    jogadorTipo[i] = escolherJogador("Verde");
+                    jogadorTipo[i] = escolherJogador(VERDE);
                     break;
                 case 3:
-                    jogadorTipo[i] = escolherJogador("Amarelo");
+                    jogadorTipo[i] = escolherJogador(AMARELO);
                     break;
                 case 4:
-                    jogadorTipo[i] = escolherJogador("Laranja");
+                    jogadorTipo[i] = escolherJogador(LARANJA);
                     break;
                 case 5:
-                    jogadorTipo[i] = escolherJogador("Vermelho");
+                    jogadorTipo[i] = escolherJogador(VERMELHO);
                     break;
                 case 6:
-                    jogadorTipo[i] = escolherJogador("Rosa");
+                    jogadorTipo[i] = escolherJogador(ROSA);
                     break;                      
             }
         }
@@ -166,8 +175,9 @@ public class Main {
     	for (int i=0; i<tabuleiro.getJogadores().size(); i++) {
             if(tabuleiro.getJogadores().get(i).getPodeJogar()){
                 System.out.println("\n\nRodada " + rodada);
-                System.out.println("- - - VEZ DO JOGADOR " + tabuleiro.getJogadores().get(i).getCor().toUpperCase() + " - - -");
-                System.out.println("Você deseja que o Jogador " + tabuleiro.getJogadores().get(i).getCor() + " ande até que casa? ");
+                System.out.println("- - - VEZ DO " + tabuleiro.getJogadores().get(i).getCor() + "JOGADOR " + (i + 1) + RESET + " - - -");
+                System.out.println("Você deseja que o " + tabuleiro.getJogadores().get(i).getCor() + "Jogador " + (i + 1) + RESET + " ande até que casa? ");
+                System.out.print("-> ");
                 int casa = T.nextInt();
                 int flagTabuleiro = tabuleiro.modoDebug(rodada, casa, i);
                 if (flagTabuleiro != -1) {
@@ -176,7 +186,8 @@ public class Main {
             }else{
                 tabuleiro.getJogadores().get(i).setPodeJogar(true);
                 System.out.println("\n\nRodada " + rodada);
-                System.out.println("\nJogador " + tabuleiro.getJogadores().get(i).getCor() + " não pode jogar nesta rodada.");   
+                System.out.println("- - - VEZ DO " + tabuleiro.getJogadores().get(i).getCor() + "JOGADOR " + (i + 1) + RESET + " - - -");
+                System.out.println(tabuleiro.getJogadores().get(i).getCor() + "Jogador " + (i + 1) + RESET + " não pode jogar nesta rodada.");   
             } 
     	}
     	return -1;
@@ -188,12 +199,14 @@ public class Main {
             
             if (tabuleiro.getJogadores().get(i).getPodeJogar()) {
                 System.out.println("\n\nRodada " + rodada);
-                System.out.println("- - - VEZ DO JOGADOR " + tabuleiro.getJogadores().get(i).getCor().toUpperCase() + " - - -");
+                System.out.println("- - - VEZ DO " + tabuleiro.getJogadores().get(i).getCor() + "JOGADOR " + (i + 1) + RESET + " - - -");
 
-                System.out.println("Vez do jogador "+ tabuleiro.getJogadores().get(i).getCor());
                 System.out.println("Role os dados!");
 
-                System.out.println("Pressione 1 - para rolar os dados 2 - Passar Rodada.");
+                System.out.println("Pressione:");
+                System.out.println("1 - para rolar os dados");
+                System.out.println("2 - Passar Rodada");
+                System.out.print("-> ");
                 int esc = T.nextInt();
                 if (esc == 2) {
                     System.out.println("Rodada passada.");
@@ -210,11 +223,10 @@ public class Main {
             } else {
                 tabuleiro.getJogadores().get(i).setPodeJogar(true);
                 System.out.println("\n\nRodada " + rodada);
-                System.out.println("\nJogador " + tabuleiro.getJogadores().get(i).getCor() + " não pode jogar nesta rodada.");
+                System.out.println("- - - VEZ DO " + tabuleiro.getJogadores().get(i).getCor() + "JOGADOR " + (i + 1) + RESET + " - - -");
+                System.out.println(tabuleiro.getJogadores().get(i).getCor() + "Jogador " + (i + 1) + RESET + " não pode jogar nesta rodada.");
             } 
     	}
     	return -1;
     }
-
-    
 }
